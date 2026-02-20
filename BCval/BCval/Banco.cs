@@ -17,17 +17,9 @@ namespace BancoCentral02
             set
             {
                 if (value.Length == 3)
-                {
                     _codigobacen = value;
-                }
                 else
-                {
-                    
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("ERRO: Codigobacen deve ter 3 Digitos");
-                        Console.ResetColor();
-                    
-                }
+                    throw new ArgumentException("Código Bacen deve ter exatamente 3 dígitos.");
             }
         }
         public string Nome
@@ -38,12 +30,8 @@ namespace BancoCentral02
                 if (!string.IsNullOrEmpty(value))
                     _nome = value.ToUpper();
                 else
-                {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("ERRO: Insira um nome");
-                    Console.ResetColor();
-                }
+                    throw new ArgumentException("O nome do banco não pode ser vazio.");
             }
-        }   
+        }
     }
 }

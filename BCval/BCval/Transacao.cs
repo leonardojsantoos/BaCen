@@ -11,6 +11,7 @@ namespace BancoCentral02
     internal class Transacao
     {
         private decimal _valor;
+
         public DateTime Data { get; set; }
         public string Tipo { get; set; }
         public ContaBancaria ContaOrigem { get; set; }
@@ -21,24 +22,16 @@ namespace BancoCentral02
             ContaOrigem = new ContaBancaria();
             ContaDestino = new ContaBancaria();
         }
+
         public decimal Valor
         {
-            get 
-            {
-                return _valor; 
-            }
+            get { return _valor; }
             set
             {
-                if (value > 0)
-                {
-                    _valor = value;
-                }
+                if (value <= 0)
+                    throw new ArgumentException("O valor da transação deve ser maior que zero.");
                 else
-                {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("ERRO: Insira um valor maior que 0");
-                        Console.ResetColor();
-                }
+                    _valor = value;
             }
         }
     }
