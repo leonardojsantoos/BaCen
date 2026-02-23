@@ -1,5 +1,5 @@
 ﻿using System;
-using BancoCentral02;
+using BancoCentral;
 
 namespace MyApp
 {
@@ -14,9 +14,9 @@ namespace MyApp
                 meuBanco.CodigoBacen = "001";
                 Transacao minhaTransacao = new Transacao
                 {
-                    Valor = 150.75m,
                     Data = DateTime.Now,
                     Tipo = "PIX",
+
                     ContaOrigem = new ContaBancaria
                     {
                         Agente = "001",
@@ -27,6 +27,15 @@ namespace MyApp
                         Agente = "002",
                         Numero = "999"
                     }
+                };
+                TransacaoPix meuPix = new TransacaoPix
+                {
+                    ValorPix = 500,
+                    ChavePix = "leonardoojsantos@gmail.com",
+                };
+                TransacaoTed meuTed = new TransacaoTed
+                {
+                    ValorTed = 6000
                 };
                 Console.WriteLine("--- REGISTRO BACEN ---\n" +
                 $"Banco: {meuBanco.Nome}\n" +
@@ -39,7 +48,10 @@ namespace MyApp
                 $"Conta Origem: {minhaTransacao.ContaOrigem.Agente} / {minhaTransacao.ContaOrigem.Numero}\n" +
                 $"Saldo Origem: R${minhaTransacao.ContaOrigem.Saldo}\n" +
                 $"Conta Destino: {minhaTransacao.ContaDestino.Agente} / {minhaTransacao.ContaDestino.Numero}\n" +
-                $"Saldo Destino: R${minhaTransacao.ContaDestino.Saldo}");
+                $"Saldo Destino: R${minhaTransacao.ContaDestino.Saldo}\n" +
+                $"---\n" +
+                $"Pix de {meuPix.ValorPix} é valido? {meuPix.Validar()}\n" +
+                $"Ted de {meuTed.ValorTed} é valido? {meuTed.Validar()}");
             }
             catch (ArgumentException ex)
             {

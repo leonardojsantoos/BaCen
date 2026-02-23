@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BancoCentral02;
+using BancoCentral;
 
-namespace BCval
+namespace BancoCentral
 {
     internal class TransacaoTed : Transacao
     {
+        public decimal ValorTed { get; set; }
         public string Nome { get; set; }
         public string CPF { get; set; }
         public override bool Validar()
         {
-            return base.Valor > 5000;
+            return ValorTed > 5000;
         }
     }
 }

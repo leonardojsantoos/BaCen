@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BancoCentral02;
+using BancoCentral;
 using static System.Net.Mime.MediaTypeNames;
 
-namespace BancoCentral02
+namespace BancoCentral
 {
     internal class Transacao
     {
