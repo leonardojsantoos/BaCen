@@ -11,18 +11,6 @@ namespace BancoCentral02
     internal class Transacao
     {
         private decimal _valor;
-
-        public DateTime Data { get; set; }
-        public string Tipo { get; set; }
-        public ContaBancaria ContaOrigem { get; set; }
-        public ContaBancaria ContaDestino { get; set; }
-
-        public Transacao()
-        {
-            ContaOrigem = new ContaBancaria();
-            ContaDestino = new ContaBancaria();
-        }
-
         public decimal Valor
         {
             get { return _valor; }
@@ -33,6 +21,19 @@ namespace BancoCentral02
                 else
                     _valor = value;
             }
+        }
+        public DateTime Data { get; set; }
+        public string Tipo { get; set; }
+        public ContaBancaria ContaOrigem { get; set; }
+        public ContaBancaria ContaDestino { get; set; }
+        public Transacao()
+        {
+            ContaOrigem = new ContaBancaria();
+            ContaDestino = new ContaBancaria();
+        }
+        public virtual bool Validar()
+        {
+            return _valor > 0;
         }
     }
 }

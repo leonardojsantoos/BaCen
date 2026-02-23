@@ -12,7 +12,6 @@ namespace MyApp
                 Banco meuBanco = new Banco();
                 meuBanco.Nome = "Banco do Brasil";
                 meuBanco.CodigoBacen = "001";
-
                 Transacao minhaTransacao = new Transacao
                 {
                     Valor = 150.75m,
@@ -29,7 +28,6 @@ namespace MyApp
                         Numero = "999"
                     }
                 };
-
                 Console.WriteLine("--- REGISTRO BACEN ---\n" +
                 $"Banco: {meuBanco.Nome}\n" +
                 $"Código Bacen: {meuBanco.CodigoBacen}\n" +
