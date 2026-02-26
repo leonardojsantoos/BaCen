@@ -11,5 +11,6 @@ namespace BancoCentral
         public string Agente { get; set; }
         public string Numero { get; set; }
         public decimal Saldo { get; set; }
+        public Cliente Titular { get; set; }
     }
 }

@@ -9,67 +9,55 @@ namespace MyApp
         {
             try
             {
-                Banco meuBanco = new Banco();
-                meuBanco.Nome = "Banco do Brasil";
-                meuBanco.CodigoBacen = "001";
-                Transacao minhaTransacao = new Transacao
+                Banco meuBanco = new Banco
                 {
-                    Data = DateTime.Now,
-                    Tipo = "PIX",
+                    Nome = "Banco do Brasil",
+                    CodigoBacen = "001"
+                };
 
-                    ContaOrigem = new ContaBancaria
-                    {
-                        Agente = "001",
-                        Numero = "888"
-                    },
-                    ContaDestino = new ContaBancaria
-                    {
-                        Agente = "002",
-                        Numero = "999"
-                    }
-                };
-                TransacaoPix meuPix = new TransacaoPix
+                PessoaFisica cliente1 = new PessoaFisica
                 {
-                    ValorPix = 500,
-                    ChavePix = "leonardoojsantos@gmail.com",
+                    Nome = "Leonardo",
+                    CPF = "12345678900",
+                    Email = "leo@email.com"
                 };
-                TransacaoTed meuTed = new TransacaoTed
+
+                ContaBancaria contaOrigem = new ContaBancaria
                 {
-                    ValorTed = 6000
+                    Agente = "001",
+                    Numero = "888",
+                    Saldo = 10000,
+                    Titular = cliente1
                 };
-                Console.WriteLine("--- REGISTRO BACEN ---\n" +
-                $"Banco: {meuBanco.Nome}\n" +
-                $"Código Bacen: {meuBanco.CodigoBacen}\n" +
-                $"---\n" +
-                $"Tipo: {minhaTransacao.Tipo}\n" +
-                $"Valor: R${minhaTransacao.Valor}\n" +
-                $"Data: {minhaTransacao.Data}\n" +
-                $"---\n" +
-                $"Conta Origem: {minhaTransacao.ContaOrigem.Agente} / {minhaTransacao.ContaOrigem.Numero}\n" +
-                $"Saldo Origem: R${minhaTransacao.ContaOrigem.Saldo}\n" +
-                $"Conta Destino: {minhaTransacao.ContaDestino.Agente} / {minhaTransacao.ContaDestino.Numero}\n" +
-                $"Saldo Destino: R${minhaTransacao.ContaDestino.Saldo}\n" +
-                $"---\n" +
-                $"Pix de {meuPix.ValorPix} é valido? {meuPix.Validar()}\n" +
-                $"Ted de {meuTed.ValorTed} é valido? {meuTed.Validar()}");
-            }
-            catch (ArgumentException ex)
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"Erro de validação: {ex.Message}");
-                Console.ResetColor();
-            }
-            catch (InvalidOperationException ex)
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"Erro de operação: {ex.Message}");
-                Console.ResetColor();
+
+                PessoaFisica cliente2 = new PessoaFisica
+                {
+                    Nome = "Maria",
+                    CPF = "99999999999"
+                };
+
+                ContaBancaria contaDestino = new ContaBancaria
+                {
+                    Agente = "002",
+                    Numero = "999",
+                    Saldo = 5000,
+                    Titular = cliente2
+                };
+
+                TransacaoPix pix = new TransacaoPix
+                {
+                    Valor = 500,
+                    ChavePix = "leonardojsantos@gmail.com",
+                    Data = DateTime.Now,
+                    ContaOrigem = contaOrigem,
+                    ContaDestino = contaDestino
+                };
+
+                Console.WriteLine($"Pix válido? {pix.Validar()}");
             }
             catch (Exception ex)
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"Erro inesperado: {ex.Message}");
-                Console.ResetColor();
+                Console.WriteLine($"Erro: {ex.Message}");
             }
         }
     }

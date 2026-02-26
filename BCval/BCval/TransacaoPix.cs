@@ -9,11 +9,11 @@ namespace BancoCentral
 {
     internal class TransacaoPix : Transacao
     {
-        public decimal ValorPix { get; set; }
         public string ChavePix { get; set; }
+        public TransacaoPix() { Tipo = "PIX"; }
         public override bool Validar()
         {
-            return ValorPix > 0 && ValorPix <= 1000;
+            return Valor > 0 && Valor <= 1000;
         }
     }
 }

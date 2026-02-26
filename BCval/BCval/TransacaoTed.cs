@@ -9,12 +9,12 @@ namespace BancoCentral
 {
     internal class TransacaoTed : Transacao
     {
-        public decimal ValorTed { get; set; }
         public string Nome { get; set; }
         public string CPF { get; set; }
+        public TransacaoTed() { Tipo = "TED"; }
         public override bool Validar()
         {
-            return ValorTed > 5000;
+            return Valor > 5000;
         }
     }
 }

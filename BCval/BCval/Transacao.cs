@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BancoCentral;
-using static System.Net.Mime.MediaTypeNames;
-
-namespace BancoCentral
+﻿namespace BancoCentral
 {
-    internal class Transacao
+    internal abstract class Transacao
     {
         private decimal _valor;
+
         public decimal Valor
         {
             get { return _valor; }
@@ -23,14 +16,10 @@ namespace BancoCentral
             }
         }
         public DateTime Data { get; set; }
-        public string Tipo { get; set; }
+        public string Tipo { get; protected set; }
         public ContaBancaria ContaOrigem { get; set; }
         public ContaBancaria ContaDestino { get; set; }
-        public Transacao()
-        {
-            ContaOrigem = new ContaBancaria();
-            ContaDestino = new ContaBancaria();
-        }
+
         public virtual bool Validar()
         {
             return _valor > 0;
