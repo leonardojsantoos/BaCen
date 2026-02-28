@@ -59,6 +59,20 @@ namespace MyApp
             {
                 Console.WriteLine($"Erro: {ex.Message}");
             }
+
+            decimal valor = 1000000000000m;
+
+            IConversorGrandeza conversorBi = new ConverterGrandezas.ConversorBilhoes();
+            IConversorGrandeza conversorTri = new ConverterGrandezas.ConversorTrilhoes();
+
+            ExibirValorConvertido(valor, conversorBi);
+            ExibirValorConvertido(valor, conversorTri);
+        }
+
+        static void ExibirValorConvertido(decimal valor, IConversorGrandeza conversor)
+        {
+            decimal convertido = conversor.Converter(valor);
+            Console.WriteLine($"Valor convertido: {convertido:N2} {conversor.ObterSimbolo()}");
         }
     }
 }
